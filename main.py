@@ -2,7 +2,7 @@ from sqlmodel import Field, SQLModel, Session, create_engine, select
 from typing import Optional
 
 #Define your PostgreSQL connection URL
-DATABASE_URL = "postgresql+psycopg2://user:password@localhost/dbname"
+DATABASE_URL = "postgresql+psycopg2://postgres:3031@localhost/myydb"
 
 #Initialize the database engine
 engine = create_engine(DATABASE_URL, echo=True)
