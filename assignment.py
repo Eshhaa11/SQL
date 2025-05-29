@@ -1,7 +1,7 @@
 from sqlmodel import Field, SQLModel, Session, create_engine, select
 from typing import Optional
 
-#Define your PostgreSQL connection URL
+#Define your PostgreSQL connection URL 
 DATABASE_URL = "postgresql+psycopg2://postgres:3031@localhost/myydb"
 
 #Initialize the database engine
@@ -17,7 +17,7 @@ class Product(SQLModel, table=True):
 def create_db():
     SQLModel.metadata.create_all(engine)
 
-def create_product(name: str, price: float, image: str):
+def create_products(name: str, price: float, image: str):
     with Session(engine) as session:
         product = Product(name=name, price=price, image=image)
         session.add(product)
@@ -46,7 +46,7 @@ def update_products(product_id: int, new_name: str, new_price: float, new_image:
         else:
             print("Product not found")
 
-def delete_product(product_id: int):
+def delete_products(product_id: int):
     with Session(engine) as session:
         product = session.get(Product, product_id)
         if product:
@@ -62,14 +62,14 @@ if __name__ == "__main__":
 
 
     # Products
-    create_product("Laptop", 1200.00, "https://example.com/laptop.jpg")
-    create_product("Mouse", 25.99, "https://example.com/mouse.jpg")
+    create_products("Laptop", 1200.00, "https://example.com/laptop.jpg")
+    create_products("Mouse", 25.99, "https://example.com/mouse.jpg")
     read_products()
     update_products(1, "Gaming Laptop", 1500.00, )
-    delete_product(2)
+    delete_products(2)
     read_products()
 
-    
+
 
 
 
